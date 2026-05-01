@@ -184,7 +184,7 @@ td.bar-cell .bar-fg{position:absolute;left:9px;bottom:3px;height:3px;background:
   <div class="tile-row" id="sn-tiles"></div>
 
   <h2>Per-Rep Activity</h2>
-  <div class="subhead">Click columns to sort. Acceptance % shown only when InMails sent &gt; 20.</div>
+  <div class="subhead">Click columns to sort. InMail reply rate (proxy = acceptance %) shown only when InMails sent &gt; 20.</div>
   <div class="card"><div style="overflow-x:auto"><table id="sn-table"></table></div></div>
 
   <div class="card-grid">
@@ -822,7 +822,7 @@ td.bar-cell .bar-fg{position:absolute;left:9px;bottom:3px;height:3px;background:
       ['Searches',          fmt(T.searches),       'Saved searches & filtering'],
       ['Profile views',     fmt(T.profile_views),  'Reps viewing prospect profiles'],
       ['Leads saved',       fmt(T.leads_saved),    'Saved to lead lists'],
-      ['InMails sent',      fmt(T.inmails_sent) + ' <span class="small">('+(T.inmail_accept_rate_gated==null?'gate not met':fmtP(T.inmail_accept_rate_gated,1)+' accept)</span>'), 'Paid InMail outreach'],
+      ['InMails sent',      fmt(T.inmails_sent) + ' <span class="small">('+(T.inmail_accept_rate_gated==null?'gate not met':fmtP(T.inmail_accept_rate_gated,1)+' reply proxy)</span>'), 'Paid InMail outreach'],
       ['Avg SSI',           fmt(T.avg_ssi) + ' / 100', 'Mean across BDR seats'],
     ].map(([lbl,val,sub]) => `<div class="tile"><div class="lbl">${lbl}</div><div class="val">${val}</div><div class="sub">${sub}</div></div>`).join('');
   }
@@ -837,7 +837,7 @@ td.bar-cell .bar-fg{position:absolute;left:9px;bottom:3px;height:3px;background:
     {k:'sn_accounts_saved',      l:'Accts saved',   f:r=> fmt(r.sn_accounts_saved)},
     {k:'sn_conn_accepts',        l:'Conn. accepts', f:r=> fmt(r.sn_conn_accepts)},
     {k:'sn_inmails_sent',        l:'InMails',       f:r=> fmt(r.sn_inmails_sent)},
-    {k:'sn_inmail_accept_rate',  l:'Accept %',      f:r=> r.sn_inmails_sent > 20 ? fmtP(r.sn_inmail_accept_rate,1) : '<span class="muted">—</span>'},
+    {k:'sn_inmail_accept_rate',  l:'InMail Reply Rate (proxy)',      f:r=> r.sn_inmails_sent > 20 ? fmtP(r.sn_inmail_accept_rate,1) : '<span class="muted">—</span>'},
     {k:'sn_leads_per_search',    l:'Leads/search',  f:r=> r.sn_searches > 0 ? fmtR(r.sn_leads_per_search,3) : '—'},
     {k:'sn_total_connections',   l:'Connections',   f:r=> fmt(r.sn_total_connections)},
     {k:'sn_ssi_overall',         l:'SSI',           f:r=> {
